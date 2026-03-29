@@ -27,8 +27,8 @@ export function ScrollReveal({ children, delay = 0, className }: ScrollRevealPro
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 16 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
       transition={{ duration: 0.6, ease: "easeOut", delay }}
       className={className}
     >

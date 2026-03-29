@@ -18,11 +18,11 @@ export default function ProjetsPage() {
   return (
     <>
     <BreadcrumbJsonLd items={[{ name: "Accueil", href: "/" }, { name: "Projets", href: "/projets" }]} />
-    <main className="pt-28 pb-24 lg:pb-32">
+    <main className="pt-32 pb-24 lg:pb-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="font-serif text-hero text-dark">Réalisations</h1>
-          <p className="mt-4 text-warmgray max-w-xl mx-auto">
+        <div className="text-center mb-20">
+          <h1 className="font-serif text-hero text-dark tracking-tight font-normal">Réalisations</h1>
+          <p className="mt-6 text-warmgray font-light tracking-wide max-w-xl mx-auto leading-relaxed">
             Chaque projet est une histoire unique, un espace transformé avec
             soin et passion.
           </p>

@@ -6,21 +6,22 @@ interface ProjectCardProps {
   slug: string;
   category: string;
   mainImage: string;
+  featured?: boolean;
 }
 
-export function ProjectCard({ title, slug, category, mainImage }: ProjectCardProps) {
+export function ProjectCard({ title, slug, category, mainImage, featured }: ProjectCardProps) {
   return (
     <Link href={`/projets/${slug}`} className="group block relative overflow-hidden rounded-lg">
-      <div className="aspect-[4/3] relative">
+      <div className={`${featured ? "aspect-video" : "aspect-[4/3]"} relative`}>
         <SafeImage
           src={mainImage}
           alt={title}
           fill
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes={featured ? "(max-width: 768px) 100vw, 100vw" : "(max-width: 768px) 100vw, 50vw"}
         />
         {/* Hover overlay */}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-500 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100">
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-600 ease-out flex flex-col items-center justify-center opacity-0 group-hover:opacity-100">
           <span className="text-gold text-xs uppercase tracking-[0.2em] font-medium mb-2">
             {category}
           </span>

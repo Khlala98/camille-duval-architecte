@@ -31,23 +31,18 @@ export function generateMetadata({ params }: Props): Metadata {
 }
 
 function InfoItem({
-  icon,
   label,
   value,
 }: {
-  icon: React.ReactNode;
   label: string;
   value: string;
 }) {
   return (
-    <div className="flex items-center gap-3">
-      <div className="text-gold">{icon}</div>
-      <div>
-        <p className="text-xs text-warmgray uppercase tracking-wider">
-          {label}
-        </p>
-        <p className="text-sm font-medium text-dark">{value}</p>
-      </div>
+    <div className="text-center">
+      <p className="text-[10px] text-warmgray uppercase tracking-[0.2em] mb-1">
+        {label}
+      </p>
+      <p className="text-sm font-medium text-dark">{value}</p>
     </div>
   );
 }
@@ -70,22 +65,22 @@ export default function ProjectPage({ params }: Props) {
     <>
     <BreadcrumbJsonLd items={[{ name: "Accueil", href: "/" }, { name: "Projets", href: "/projets" }, { name: project.title, href: `/projets/${project.slug}` }]} />
     <main className="pt-20">
-      {/* Hero image */}
-      <div className="relative w-full max-h-[70vh] overflow-hidden">
+      {/* Hero image — edge-to-edge */}
+      <div className="relative w-full max-h-[75vh] overflow-hidden">
         <SafeImage
           src={project.mainImage}
           alt={project.title}
           width={1920}
           height={1080}
-          className="w-full h-auto max-h-[70vh] object-cover"
+          className="w-full h-auto max-h-[75vh] object-cover"
           priority
         />
       </div>
 
-      <div className="mx-auto max-w-4xl px-6 lg:px-8 py-16 lg:py-24">
+      <div className="mx-auto max-w-4xl px-6 lg:px-8 py-20 lg:py-28">
         {/* Badges */}
         <ScrollReveal>
-          <div className="flex flex-wrap gap-3 mb-6">
+          <div className="flex flex-wrap gap-3 mb-8">
             <span className="text-xs uppercase tracking-[0.15em] text-gold font-medium bg-gold/10 rounded-full px-4 py-1.5">
               {project.category}
             </span>
@@ -97,56 +92,43 @@ export default function ProjectPage({ params }: Props) {
 
         {/* Title */}
         <ScrollReveal>
-          <h1 className="font-serif text-hero text-dark mb-8">
+          <h1 className="font-serif text-hero text-dark tracking-tight font-normal mb-12">
             {project.title}
           </h1>
         </ScrollReveal>
 
-        {/* Info bar */}
+        {/* Info bar — refined with vertical separators */}
         <ScrollReveal>
-          <div className="flex flex-wrap gap-8 py-8 border-y border-border mb-12">
+          <div className="flex flex-wrap items-center justify-start gap-0 py-8 border-y border-border mb-16">
             {project.surfaceArea && (
-              <InfoItem
-                icon={
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <rect x="3" y="3" width="18" height="18" rx="2" />
-                    <path d="M3 12h18M12 3v18" />
-                  </svg>
-                }
-                label="Surface"
-                value={project.surfaceArea}
-              />
+              <>
+                <div className="px-8 first:pl-0">
+                  <InfoItem label="Surface" value={project.surfaceArea} />
+                </div>
+              </>
             )}
             {project.budgetRange && (
-              <InfoItem
-                icon={
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M14.5 9a3.5 3.5 0 00-5 0M9.5 15a3.5 3.5 0 005 0M12 6v2M12 16v2" />
-                  </svg>
-                }
-                label="Budget"
-                value={project.budgetRange}
-              />
+              <>
+                <div className="w-px h-8 bg-border hidden sm:block" />
+                <div className="px-8">
+                  <InfoItem label="Budget" value={project.budgetRange} />
+                </div>
+              </>
             )}
             {project.duration && (
-              <InfoItem
-                icon={
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 6v6l4 2" />
-                  </svg>
-                }
-                label="Durée"
-                value={project.duration}
-              />
+              <>
+                <div className="w-px h-8 bg-border hidden sm:block" />
+                <div className="px-8">
+                  <InfoItem label="Durée" value={project.duration} />
+                </div>
+              </>
             )}
           </div>
         </ScrollReveal>
 
         {/* Brief */}
         <ScrollReveal>
-          <div className="mb-16">
+          <div className="mb-20">
             <h2 className="font-serif text-2xl text-dark mb-4">Le brief</h2>
             <p className="text-warmgray leading-relaxed mb-6">
               {project.description}
@@ -169,32 +151,62 @@ export default function ProjectPage({ params }: Props) {
           </div>
         </ScrollReveal>
 
-        {/* Gallery */}
+        {/* Gallery — alternating rhythm */}
         {galleryImages.length > 0 && (
           <ScrollReveal>
-            <div className="mb-16">
-              <h2 className="font-serif text-2xl text-dark mb-6">Galerie</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {galleryImages.map((img, i) => (
-                  <div
-                    key={i}
-                    className={`relative overflow-hidden rounded-lg ${
-                      i === 0 ? "md:col-span-2 aspect-[16/9]" : "aspect-[4/3]"
-                    }`}
-                  >
-                    <SafeImage
-                      src={img}
-                      alt={`${project.title} — vue ${i + 1}`}
-                      fill
-                      className="object-cover hover:scale-105 transition-transform duration-700"
-                      sizes={
-                        i === 0
-                          ? "(max-width: 768px) 100vw, 800px"
-                          : "(max-width: 768px) 100vw, 400px"
-                      }
-                    />
-                  </div>
-                ))}
+            <div className="mb-20">
+              <h2 className="font-serif text-2xl text-dark mb-8">Galerie</h2>
+              <div className="space-y-6">
+                {galleryImages.map((img, i) => {
+                  // Alternate: full-width, then pairs of 2
+                  const isFullWidth = i % 3 === 0;
+                  if (isFullWidth) {
+                    return (
+                      <div
+                        key={i}
+                        className="relative overflow-hidden rounded-lg aspect-[16/9]"
+                      >
+                        <SafeImage
+                          src={img}
+                          alt={`${project.title} — vue ${i + 1}`}
+                          fill
+                          className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
+                          sizes="(max-width: 768px) 100vw, 800px"
+                        />
+                      </div>
+                    );
+                  }
+                  // For pair items, only render on odd indices (the start of each pair)
+                  if (i % 3 === 1) {
+                    const pairImg = galleryImages[i + 1];
+                    return (
+                      <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="relative overflow-hidden rounded-lg aspect-[4/3]">
+                          <SafeImage
+                            src={img}
+                            alt={`${project.title} — vue ${i + 1}`}
+                            fill
+                            className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
+                            sizes="(max-width: 768px) 100vw, 400px"
+                          />
+                        </div>
+                        {pairImg && (
+                          <div className="relative overflow-hidden rounded-lg aspect-[4/3]">
+                            <SafeImage
+                              src={pairImg}
+                              alt={`${project.title} — vue ${i + 2}`}
+                              fill
+                              className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
+                              sizes="(max-width: 768px) 100vw, 400px"
+                            />
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
+                  // Skip even indices that are part of a pair (i % 3 === 2)
+                  return null;
+                })}
               </div>
             </div>
           </ScrollReveal>
@@ -203,7 +215,7 @@ export default function ProjectPage({ params }: Props) {
         {/* Design choices */}
         {project.designChoices && (
           <ScrollReveal>
-            <div className="mb-16">
+            <div className="mb-20">
               <h2 className="font-serif text-2xl text-dark mb-4">Nos choix</h2>
               <p className="text-warmgray leading-relaxed">
                 {project.designChoices}
@@ -213,13 +225,13 @@ export default function ProjectPage({ params }: Props) {
         )}
 
         {/* Prev / Next */}
-        <div className="flex items-center justify-between py-8 border-t border-border mb-16">
+        <div className="flex items-center justify-between py-8 border-t border-border mb-20">
           {prev ? (
             <Link
               href={`/projets/${prev.slug}`}
-              className="group flex items-center gap-2 text-sm text-warmgray hover:text-dark transition-colors"
+              className="group flex items-center gap-2 text-sm text-warmgray hover:text-dark transition-colors duration-500"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="group-hover:-translate-x-1 transition-transform">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="group-hover:-translate-x-1 transition-transform duration-500">
                 <path d="M19 12H5M12 19l-7-7 7-7" />
               </svg>
               <span className="hidden sm:inline">{prev.title}</span>
@@ -231,11 +243,11 @@ export default function ProjectPage({ params }: Props) {
           {next ? (
             <Link
               href={`/projets/${next.slug}`}
-              className="group flex items-center gap-2 text-sm text-warmgray hover:text-dark transition-colors"
+              className="group flex items-center gap-2 text-sm text-warmgray hover:text-dark transition-colors duration-500"
             >
               <span className="hidden sm:inline">{next.title}</span>
               <span className="sm:hidden">Suivant</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="group-hover:translate-x-1 transition-transform">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="group-hover:translate-x-1 transition-transform duration-500">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </Link>
@@ -246,11 +258,11 @@ export default function ProjectPage({ params }: Props) {
 
         {/* CTA */}
         <ScrollReveal>
-          <div className="text-center bg-white border border-border rounded-lg p-10 lg:p-14">
+          <div className="text-center bg-white border border-border rounded-lg p-12 lg:p-16">
             <h2 className="font-serif text-section text-dark mb-4">
               Ce projet vous inspire ?
             </h2>
-            <p className="text-warmgray mb-8 max-w-md mx-auto">
+            <p className="text-warmgray mb-8 max-w-md mx-auto leading-relaxed">
               Parlons du vôtre. Chaque intérieur mérite une attention
               particulière.
             </p>

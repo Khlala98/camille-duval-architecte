@@ -1,7 +1,18 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 
 export function HeroSection() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* Background image with Ken Burns */}
@@ -13,20 +24,23 @@ export function HeroSection() {
         }}
       />
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70" />
+      {/* Gradient overlay — subtle, bottom-heavy */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent" />
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
-        <h1 className="font-serif text-hero text-white max-w-4xl text-balance">
+      {/* Content with parallax */}
+      <div
+        className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6"
+        style={{ transform: `translateY(${scrollY * 0.15}px)` }}
+      >
+        <h1 className="font-serif text-hero text-white max-w-5xl text-balance">
           {siteConfig.tagline}
         </h1>
-        <p className="mt-6 text-white/80 text-lg max-w-xl leading-relaxed">
+        <p className="mt-8 text-white/70 text-lg font-light tracking-wide max-w-xl leading-relaxed">
           {siteConfig.description}
         </p>
         <Link
           href="/projets"
-          className="mt-10 inline-flex items-center gap-2 bg-gold text-dark rounded-full px-8 py-3.5 text-sm font-medium tracking-wide hover:bg-gold-dark transition-colors duration-300"
+          className="mt-12 inline-flex items-center gap-2 bg-gold text-dark rounded-full px-10 py-4 text-base font-medium tracking-wide hover:bg-gold-dark transition-colors duration-500"
         >
           Découvrir mes réalisations
         </Link>
@@ -43,7 +57,7 @@ export function HeroSection() {
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="opacity-60"
+          className="opacity-50"
         >
           <path d="M6 9l6 6 6-6" />
         </svg>

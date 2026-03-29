@@ -13,7 +13,7 @@ export function TestimonialsSection() {
           subtitle="La satisfaction de mes clients est ma plus belle récompense."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
           {items.map((t) => (
             <TestimonialCard
               key={t.id}

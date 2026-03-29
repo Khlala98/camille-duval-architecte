@@ -73,7 +73,7 @@ export const Button = forwardRef<
   },
   ref
 ) {
-  const classes = `inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium tracking-wide transition-colors duration-300 ${variants[variant]} ${isLoading ? "opacity-70 pointer-events-none" : ""} ${className}`;
+  const classes = `inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-medium tracking-wide transition-colors duration-500 ${variants[variant]} ${isLoading ? "opacity-70 pointer-events-none" : ""} ${className}`;
 
   if (href) {
     const { external } = rest as ButtonAsLink;

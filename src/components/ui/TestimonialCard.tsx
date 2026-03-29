@@ -6,14 +6,14 @@ interface TestimonialCardProps {
 
 export function TestimonialCard({ clientName, quote, rating }: TestimonialCardProps) {
   return (
-    <div className="bg-white rounded-lg p-8 lg:p-10 border border-border">
+    <div className="bg-white rounded-lg p-10 lg:p-12 border border-border">
       {/* Decorative quote */}
-      <span className="block font-serif text-5xl text-gold/30 leading-none select-none mb-4">
+      <span className="block font-serif text-8xl text-gold/20 leading-none select-none mb-2" aria-hidden="true">
         &ldquo;
       </span>
 
       {/* Quote */}
-      <p className="font-serif text-dark/80 text-base lg:text-lg italic leading-relaxed mb-6">
+      <p className="font-serif text-dark/80 text-lg lg:text-xl italic leading-relaxed mb-8">
         {quote}
       </p>
 

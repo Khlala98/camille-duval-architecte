@@ -27,13 +27,13 @@ export default function AProposPage() {
   return (
     <>
     <BreadcrumbJsonLd items={[{ name: "Accueil", href: "/" }, { name: "À propos", href: "/a-propos" }]} />
-    <main className="pt-28 pb-0">
+    <main className="pt-32 pb-0">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-24 lg:pb-32">
-        {/* Two columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          {/* Photo */}
+        {/* Two columns — photo takes more space */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          {/* Photo — larger */}
           <ScrollReveal>
-            <div className="relative">
+            <div className="relative lg:w-[110%]">
               <div className="relative aspect-[3/4] bg-border rounded-lg overflow-hidden">
                 {/* Placeholder photo */}
                 <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-dark/5 flex items-center justify-center">
@@ -42,24 +42,24 @@ export default function AProposPage() {
                   </span>
                 </div>
               </div>
-              {/* Gold offset frame */}
-              <div className="absolute -bottom-3 -right-3 w-full h-full border-2 border-gold/30 rounded-lg -z-10" />
+              {/* Gold offset frame — more visible */}
+              <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-gold/30 rounded-lg -z-10" />
             </div>
           </ScrollReveal>
 
           {/* Text */}
           <div>
             <ScrollReveal>
-              <h1 className="font-serif text-hero text-dark">
+              <h1 className="font-serif text-hero text-dark tracking-tight font-normal">
                 {siteConfig.name}
               </h1>
-              <p className="text-gold font-medium tracking-wide text-sm uppercase mt-2 mb-8">
+              <p className="text-gold font-light tracking-wide text-sm uppercase mt-2 mb-10">
                 Architecte d&apos;intérieur DPLG
               </p>
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>
-              <div className="space-y-5 text-warmgray leading-relaxed mb-12">
+              <div className="space-y-5 text-warmgray leading-relaxed mb-16">
                 <p>
                   Diplômée de l&apos;école Camondo, je conçois des intérieurs
                   depuis plus de 12 ans. Mon parcours m&apos;a menée des
@@ -86,12 +86,12 @@ export default function AProposPage() {
 
             {/* Philosophy */}
             <ScrollReveal delay={0.2}>
-              <div className="mb-12">
+              <div className="mb-16">
                 <h2 className="font-serif text-2xl text-dark mb-6">
                   Philosophie
                 </h2>
-                <blockquote className="border-l-2 border-gold pl-6 py-2">
-                  <p className="font-serif text-lg italic text-dark/80 leading-relaxed">
+                <blockquote className="border-l-2 border-gold pl-8 py-2">
+                  <p className="font-serif text-2xl italic text-dark/80 leading-relaxed">
                     &laquo;&nbsp;Un intérieur réussi est un espace où chaque
                     détail a du sens, où la lumière dialogue avec les matières,
                     et où l&apos;on ressent, sans pouvoir l&apos;expliquer, que
