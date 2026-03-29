@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id             String        @id @default(cuid())
+  title          String
+  slug           String        @unique
+  category       String
+  description    String
+  brief          String        @default("")
+  constraints    String        @default("")
+  designChoices  String        @default("")
+  surfaceArea    String        @default("")
+  budgetRange    String        @default("")
+  duration       String        @default("")
+  city           String        @default("Lyon")
+  mainImage      String        @default("")
+  galleryImages  String        @default("[]")
+  isFeatured     Boolean       @default(false)
+  order          Int           @default(0)
+  createdAt      DateTime      @default(now())
+  testimonials   Testimonial[]
+}
+
+model Service {
+  id             String       @id @default(cuid())
+  title          String
+  description    String
+  includes       String       @default("[]")
+  targetAudience String       @default("")
+  startingPrice  String       @default("")
+  icon           String       @default("")
+  order          Int          @default(0)
+  faqs           ServiceFAQ[]
+}
+
+model ServiceFAQ {
+  id        String  @id @default(cuid())
+  question  String
+  answer    String
+  order     Int     @default(0)
+  serviceId String
+  service   Service @relation(fields: [serviceId], references: [id])
+}
+
+model Testimonial {
+  id         String  @id @default(cuid())
+  clientName String
+  quote      String
+  rating     Int     @default(5)
+  projectId  String
+  project    Project @relation(fields: [projectId], references: [id])
+}
+
+model ProcessStep {
+  id           String @id @default(cuid())
+  title        String
+  description  String
+  icon         String @default("")
+  durationText String @default("")
+  order        Int    @default(0)
+}
+
+model ContactRequest {
+  id              String   @id @default(cuid())
+  fullName        String
+  email           String
+  phone           String   @default("")
+  projectType     String
+  surfaceArea     String   @default("")
+  budgetRange     String   @default("")
+  city            String   @default("")
+  message         String   @default("")
+  desiredTimeline String   @default("")
+  status          String   @default("Nouveau")
+  createdAt       DateTime @default(now())
+}
+
+model Payment {
+  id               String   @id @default(cuid())
+  clientName       String
+  amount           Int
+  status           String   @default("Pending")
+  stripeSessionId  String   @default("")
+  projectId        String?
+  createdAt        DateTime @default(now())
+}

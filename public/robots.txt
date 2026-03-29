@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Host
+Host: https://camille-duval-architecte.fr
+
+# Sitemaps
+Sitemap: https://camille-duval-architecte.fr/sitemap.xml
