@@ -37,136 +37,76 @@ const footerNav = [
 
 export function Footer() {
   return (
-    <footer className="bg-dark text-cream border-t border-warmgray/20" role="contentinfo" aria-label="Pied de page">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20 lg:py-28">
-        {/* Top grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
-          {/* Logo + tagline */}
-          <div className="lg:col-span-1">
-            <Link href="/" aria-label={`${siteConfig.name} — Accueil`} className="font-serif text-2xl font-normal tracking-widest text-cream">
-              {siteConfig.name}
+    <footer className="bg-dark text-cream border-t border-warmgray/10" role="contentinfo" aria-label="Pied de page">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
+        {/* Centered vertical layout */}
+        <div className="flex flex-col items-center text-center">
+          {/* Logo */}
+          <Link
+            href="/"
+            aria-label={`${siteConfig.name} — Accueil`}
+            className="text-sm uppercase tracking-[0.2em] font-light text-cream"
+          >
+            {siteConfig.name}
+          </Link>
+
+          {/* Navigation links — single line */}
+          <nav className="mt-10 flex flex-wrap justify-center gap-8">
+            {footerNav.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm text-cream/50 hover:text-gold transition-colors duration-500 font-light tracking-wide"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Social icons */}
+          <div className="mt-10 flex items-center gap-6">
+            <a
+              href={siteConfig.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cream/40 hover:text-gold transition-colors duration-500"
+              aria-label="Instagram"
+            >
+              <InstagramIcon />
+            </a>
+            <a
+              href={siteConfig.social.pinterest}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cream/40 hover:text-gold transition-colors duration-500"
+              aria-label="Pinterest"
+            >
+              <PinterestIcon />
+            </a>
+            <a
+              href={siteConfig.social.houzz}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cream/40 hover:text-gold transition-colors duration-500"
+              aria-label="Houzz"
+            >
+              <HouzzIcon />
+            </a>
+          </div>
+
+          {/* Legal + Copyright */}
+          <div className="mt-12 flex flex-wrap justify-center gap-6 text-xs text-cream/30">
+            <Link href="/mentions-legales" className="hover:text-cream/60 transition-colors duration-500">
+              Mentions légales
             </Link>
-            <p className="mt-4 text-cream/50 text-sm leading-relaxed max-w-xs">
-              {siteConfig.tagline}
-            </p>
+            <Link href="/confidentialite" className="hover:text-cream/60 transition-colors duration-500">
+              Confidentialité
+            </Link>
           </div>
 
-          {/* Navigation */}
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/40 mb-6">
-              Navigation
-            </h3>
-            <ul className="space-y-3">
-              {footerNav.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-cream/60 hover:text-gold transition-colors duration-500"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/40 mb-6">
-              Contact
-            </h3>
-            <ul className="space-y-3 text-sm text-cream/60">
-              <li>
-                <a
-                  href={`mailto:${siteConfig.contact.email}`}
-                  className="hover:text-gold transition-colors duration-500"
-                >
-                  {siteConfig.contact.email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={siteConfig.contact.phoneHref}
-                  className="hover:text-gold transition-colors duration-500"
-                >
-                  {siteConfig.contact.phone}
-                </a>
-              </li>
-              <li className="text-cream/40">
-                {siteConfig.contact.address}
-                <br />
-                {siteConfig.contact.postalCode} {siteConfig.contact.city}
-              </li>
-            </ul>
-          </div>
-
-          {/* Zones */}
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/40 mb-6">
-              Zones d&apos;intervention
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {siteConfig.zones.map((zone) => (
-                <span
-                  key={zone}
-                  className="text-xs text-cream/40 border border-cream/10 rounded-full px-3 py-1"
-                >
-                  {zone}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Separator */}
-        <div className="border-t border-cream/10 mt-16 pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            {/* Social */}
-            <div className="flex items-center gap-5">
-              <a
-                href={siteConfig.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cream/40 hover:text-gold transition-colors duration-500"
-                aria-label="Instagram"
-              >
-                <InstagramIcon />
-              </a>
-              <a
-                href={siteConfig.social.pinterest}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cream/40 hover:text-gold transition-colors duration-500"
-                aria-label="Pinterest"
-              >
-                <PinterestIcon />
-              </a>
-              <a
-                href={siteConfig.social.houzz}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cream/40 hover:text-gold transition-colors duration-500"
-                aria-label="Houzz"
-              >
-                <HouzzIcon />
-              </a>
-            </div>
-
-            {/* Legal links */}
-            <div className="flex items-center gap-6 text-xs text-cream/30">
-              <Link href="/mentions-legales" className="hover:text-cream/60 transition-colors duration-500">
-                Mentions légales
-              </Link>
-              <Link href="/confidentialite" className="hover:text-cream/60 transition-colors duration-500">
-                Confidentialité
-              </Link>
-            </div>
-
-            {/* Copyright */}
-            <p className="text-[11px] text-cream/20">
-              &copy; 2026 {siteConfig.legal.companyName}
-            </p>
-          </div>
+          <p className="mt-6 text-[11px] text-cream/20">
+            &copy; 2026 {siteConfig.legal.companyName}
+          </p>
         </div>
       </div>
     </footer>

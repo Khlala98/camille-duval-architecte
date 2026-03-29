@@ -4,36 +4,27 @@ interface TestimonialCardProps {
   rating: number;
 }
 
-export function TestimonialCard({ clientName, quote, rating }: TestimonialCardProps) {
+export function TestimonialCard({ clientName, quote }: TestimonialCardProps) {
   return (
-    <div className="bg-white rounded-lg p-10 lg:p-12 border border-border">
-      {/* Decorative quote */}
-      <span className="block font-serif text-8xl text-gold/20 leading-none select-none mb-2" aria-hidden="true">
-        &ldquo;
+    <div className="relative bg-white p-10 lg:p-12">
+      {/* Decorative large quote — gold, absolute */}
+      <span
+        className="absolute top-0 left-6 font-serif text-[120px] text-gold/10 leading-none select-none pointer-events-none"
+        aria-hidden="true"
+      >
+        &laquo;
       </span>
 
       {/* Quote */}
-      <p className="font-serif text-dark/80 text-lg lg:text-xl italic leading-relaxed mb-8">
+      <p className="font-serif text-dark/80 text-xl lg:text-2xl italic leading-relaxed mb-8 relative">
         {quote}
       </p>
 
-      {/* Stars */}
-      <div className="flex gap-1 mb-3">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <svg
-            key={i}
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill={i < rating ? "#C4A265" : "#E8E6E1"}
-          >
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-          </svg>
-        ))}
-      </div>
-
-      {/* Client name */}
-      <p className="text-sm font-medium text-dark">{clientName}</p>
+      {/* Client name — gold dash prefix */}
+      <p className="text-xs uppercase tracking-[0.2em] text-warmgray">
+        <span className="text-gold mr-2">—</span>
+        {clientName}
+      </p>
     </div>
   );
 }

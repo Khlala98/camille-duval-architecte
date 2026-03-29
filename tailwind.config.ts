@@ -25,7 +25,7 @@ const config: Config = {
       },
       fontSize: {
         hero: [
-          "clamp(2.75rem, 6vw, 5.5rem)",
+          "clamp(2.5rem, 6vw, 5rem)",
           { lineHeight: "1.05", letterSpacing: "-0.025em" },
         ],
         section: [

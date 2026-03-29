@@ -9,11 +9,11 @@ export function TestimonialsSection() {
     <section className="py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <SectionTitle
-          title="Ce qu'ils en disent"
-          subtitle="La satisfaction de mes clients est ma plus belle récompense."
+          title="Témoignages"
+          subtitle="Ce qu'ils en disent"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:divide-x md:divide-warmgray/10">
           {items.map((t) => (
             <TestimonialCard
               key={t.id}

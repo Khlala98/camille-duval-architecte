@@ -30,23 +30,6 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-function InfoItem({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="text-center">
-      <p className="text-[10px] text-warmgray uppercase tracking-[0.2em] mb-1">
-        {label}
-      </p>
-      <p className="text-sm font-medium text-dark">{value}</p>
-    </div>
-  );
-}
-
 export default function ProjectPage({ params }: Props) {
   const project = getProjectBySlug(params.slug);
 
@@ -61,11 +44,18 @@ export default function ProjectPage({ params }: Props) {
       ? projects[currentIndex + 1]
       : null;
 
+  const infoItems = [
+    project.surfaceArea && { label: "Surface", value: project.surfaceArea },
+    project.budgetRange && { label: "Budget", value: project.budgetRange },
+    project.duration && { label: "Durée", value: project.duration },
+    project.city && { label: "Lieu", value: project.city },
+  ].filter(Boolean) as { label: string; value: string }[];
+
   return (
     <>
     <BreadcrumbJsonLd items={[{ name: "Accueil", href: "/" }, { name: "Projets", href: "/projets" }, { name: project.title, href: `/projets/${project.slug}` }]} />
     <main className="pt-20">
-      {/* Hero image — edge-to-edge */}
+      {/* Hero image — edge-to-edge, no border-radius */}
       <div className="relative w-full max-h-[75vh] overflow-hidden">
         <SafeImage
           src={project.mainImage}
@@ -77,69 +67,48 @@ export default function ProjectPage({ params }: Props) {
         />
       </div>
 
-      <div className="mx-auto max-w-4xl px-6 lg:px-8 py-20 lg:py-28">
-        {/* Badges */}
-        <ScrollReveal>
-          <div className="flex flex-wrap gap-3 mb-8">
-            <span className="text-xs uppercase tracking-[0.15em] text-gold font-medium bg-gold/10 rounded-full px-4 py-1.5">
-              {project.category}
-            </span>
-            <span className="text-xs uppercase tracking-[0.15em] text-warmgray bg-cream rounded-full px-4 py-1.5 border border-border">
-              {project.city}
-            </span>
-          </div>
-        </ScrollReveal>
-
+      {/* Large white space */}
+      <div className="mx-auto max-w-4xl px-6 lg:px-8 pt-16 pb-20 lg:pb-28">
         {/* Title */}
         <ScrollReveal>
-          <h1 className="font-serif text-hero text-dark tracking-tight font-normal mb-12">
+          <h1 className="font-serif text-hero text-dark tracking-tight font-normal mb-20">
             {project.title}
           </h1>
         </ScrollReveal>
 
-        {/* Info bar — refined with vertical separators */}
+        {/* Info bar — horizontal with vertical pipe separators */}
         <ScrollReveal>
-          <div className="flex flex-wrap items-center justify-start gap-0 py-8 border-y border-border mb-16">
-            {project.surfaceArea && (
-              <>
-                <div className="px-8 first:pl-0">
-                  <InfoItem label="Surface" value={project.surfaceArea} />
-                </div>
-              </>
-            )}
-            {project.budgetRange && (
-              <>
-                <div className="w-px h-8 bg-border hidden sm:block" />
-                <div className="px-8">
-                  <InfoItem label="Budget" value={project.budgetRange} />
-                </div>
-              </>
-            )}
-            {project.duration && (
-              <>
-                <div className="w-px h-8 bg-border hidden sm:block" />
-                <div className="px-8">
-                  <InfoItem label="Durée" value={project.duration} />
-                </div>
-              </>
-            )}
+          <div className="flex flex-wrap items-center gap-0 mb-20">
+            {infoItems.map((item, i) => (
+              <div key={item.label} className="flex items-center">
+                {i > 0 && (
+                  <span className="text-warmgray/30 mx-6 hidden sm:inline">|</span>
+                )}
+                <span className="text-xs uppercase tracking-[0.15em] text-warmgray">
+                  {item.label} : {item.value}
+                </span>
+              </div>
+            ))}
           </div>
         </ScrollReveal>
 
         {/* Brief */}
         <ScrollReveal>
           <div className="mb-20">
-            <h2 className="font-serif text-2xl text-dark mb-4">Le brief</h2>
-            <p className="text-warmgray leading-relaxed mb-6">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="block w-10 h-[1px] bg-gold" />
+              <h2 className="text-sm uppercase tracking-[0.15em] text-warmgray font-light">Le brief</h2>
+            </div>
+            <p className="text-base leading-[1.8] text-warmgray mb-6">
               {project.description}
             </p>
             {project.brief && (
-              <p className="text-warmgray leading-relaxed mb-6">
+              <p className="text-base leading-[1.8] text-warmgray mb-6">
                 {project.brief}
               </p>
             )}
             {project.constraints && (
-              <div className="bg-white border border-border rounded-lg p-6">
+              <div className="bg-white border border-border p-6 mt-8">
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-dark mb-2">
                   Contraintes
                 </h3>
@@ -151,52 +120,53 @@ export default function ProjectPage({ params }: Props) {
           </div>
         </ScrollReveal>
 
-        {/* Gallery — alternating rhythm */}
+        {/* Gallery — alternating rhythm, no border-radius */}
         {galleryImages.length > 0 && (
           <ScrollReveal>
             <div className="mb-20">
-              <h2 className="font-serif text-2xl text-dark mb-8">Galerie</h2>
-              <div className="space-y-6">
+              <div className="flex items-center gap-4 mb-8">
+                <span className="block w-10 h-[1px] bg-gold" />
+                <h2 className="text-sm uppercase tracking-[0.15em] text-warmgray font-light">Galerie</h2>
+              </div>
+              <div className="space-y-4">
                 {galleryImages.map((img, i) => {
-                  // Alternate: full-width, then pairs of 2
                   const isFullWidth = i % 3 === 0;
                   if (isFullWidth) {
                     return (
                       <div
                         key={i}
-                        className="relative overflow-hidden rounded-lg aspect-[16/9]"
+                        className="relative overflow-hidden aspect-[16/9]"
                       >
                         <SafeImage
                           src={img}
                           alt={`${project.title} — vue ${i + 1}`}
                           fill
-                          className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
+                          className="object-cover hover:scale-[1.03] transition-transform duration-700 ease-out"
                           sizes="(max-width: 768px) 100vw, 800px"
                         />
                       </div>
                     );
                   }
-                  // For pair items, only render on odd indices (the start of each pair)
                   if (i % 3 === 1) {
                     const pairImg = galleryImages[i + 1];
                     return (
-                      <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="relative overflow-hidden rounded-lg aspect-[4/3]">
+                      <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="relative overflow-hidden aspect-[4/3]">
                           <SafeImage
                             src={img}
                             alt={`${project.title} — vue ${i + 1}`}
                             fill
-                            className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
+                            className="object-cover hover:scale-[1.03] transition-transform duration-700 ease-out"
                             sizes="(max-width: 768px) 100vw, 400px"
                           />
                         </div>
                         {pairImg && (
-                          <div className="relative overflow-hidden rounded-lg aspect-[4/3]">
+                          <div className="relative overflow-hidden aspect-[4/3]">
                             <SafeImage
                               src={pairImg}
                               alt={`${project.title} — vue ${i + 2}`}
                               fill
-                              className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
+                              className="object-cover hover:scale-[1.03] transition-transform duration-700 ease-out"
                               sizes="(max-width: 768px) 100vw, 400px"
                             />
                           </div>
@@ -204,7 +174,6 @@ export default function ProjectPage({ params }: Props) {
                       </div>
                     );
                   }
-                  // Skip even indices that are part of a pair (i % 3 === 2)
                   return null;
                 })}
               </div>
@@ -216,8 +185,11 @@ export default function ProjectPage({ params }: Props) {
         {project.designChoices && (
           <ScrollReveal>
             <div className="mb-20">
-              <h2 className="font-serif text-2xl text-dark mb-4">Nos choix</h2>
-              <p className="text-warmgray leading-relaxed">
+              <div className="flex items-center gap-4 mb-6">
+                <span className="block w-10 h-[1px] bg-gold" />
+                <h2 className="text-sm uppercase tracking-[0.15em] text-warmgray font-light">Nos choix</h2>
+              </div>
+              <p className="text-base leading-[1.8] text-warmgray">
                 {project.designChoices}
               </p>
             </div>
@@ -258,7 +230,7 @@ export default function ProjectPage({ params }: Props) {
 
         {/* CTA */}
         <ScrollReveal>
-          <div className="text-center bg-white border border-border rounded-lg p-12 lg:p-16">
+          <div className="text-center bg-white border border-border p-12 lg:p-16">
             <h2 className="font-serif text-section text-dark mb-4">
               Ce projet vous inspire ?
             </h2>

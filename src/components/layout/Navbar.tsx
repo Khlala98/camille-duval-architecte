@@ -33,19 +33,19 @@ export function Navbar() {
     <>
       <nav
         aria-label="Navigation principale"
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
           showDark
-            ? "bg-cream/95 backdrop-blur-md shadow-sm"
+            ? "bg-cream/95 backdrop-blur-md"
             : "bg-transparent"
         }`}
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
-            {/* Logo */}
+            {/* Logo — ultra minimal */}
             <Link
               href="/"
               aria-label={`${siteConfig.name} — Accueil`}
-              className={`font-serif text-xl font-normal tracking-widest transition-colors duration-500 ${
+              className={`text-sm uppercase tracking-[0.2em] font-light transition-colors duration-700 ${
                 showDark ? "text-dark" : "text-white"
               }`}
             >
@@ -58,7 +58,7 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-light tracking-wide transition-colors duration-500 hover:opacity-70 ${
+                  className={`text-sm font-light tracking-wide transition-colors duration-700 hover:opacity-70 ${
                     showDark ? "text-dark" : "text-white"
                   } ${pathname === link.href ? "opacity-70" : ""}`}
                 >
@@ -71,7 +71,7 @@ export function Navbar() {
             <div className="flex items-center gap-4">
               <Link
                 href="/contact"
-                className="hidden md:inline-flex bg-gold text-dark rounded-full px-5 py-1.5 text-xs font-medium tracking-wide hover:bg-gold-dark transition-colors duration-500"
+                className="hidden md:inline-flex bg-gold text-dark rounded-full px-5 py-1.5 text-xs font-medium tracking-wide hover:bg-gold-dark transition-colors duration-700"
               >
                 Contact
               </Link>
@@ -83,17 +83,17 @@ export function Navbar() {
                 aria-label="Ouvrir le menu"
               >
                 <span
-                  className={`block h-0.5 w-6 transition-colors duration-500 ${
+                  className={`block h-0.5 w-6 transition-colors duration-700 ${
                     showDark ? "bg-dark" : "bg-white"
                   }`}
                 />
                 <span
-                  className={`block h-0.5 w-6 transition-colors duration-500 ${
+                  className={`block h-0.5 w-6 transition-colors duration-700 ${
                     showDark ? "bg-dark" : "bg-white"
                   }`}
                 />
                 <span
-                  className={`block h-0.5 w-4 self-end transition-colors duration-500 ${
+                  className={`block h-0.5 w-4 self-end transition-colors duration-700 ${
                     showDark ? "bg-dark" : "bg-white"
                   }`}
                 />
