@@ -1,0 +1,23 @@
+[
+  {
+    "id": "cmnbry1ir000pdb7cyndwvicn",
+    "clientName": "Marie & Thomas L.",
+    "quote": "Camille a su transformer notre appartement haussmannien en un lieu de vie qui nous ressemble parfaitement. Son sens du détail et sa capacité d'écoute sont exceptionnels. On ne se lasse pas de rentrer chez nous !",
+    "rating": 5,
+    "projectId": "cmnbry1cd0000db7c1knkae2w"
+  },
+  {
+    "id": "cmnbry1ir000qdb7cjzpzkc7o",
+    "clientName": "Famille Durand",
+    "quote": "La rénovation de notre maison dans les Monts d'Or était un projet qui nous faisait peur. Camille a tout orchestré avec une sérénité communicative. Le résultat dépasse nos espérances.",
+    "rating": 5,
+    "projectId": "cmnbry1dq0002db7c416ypdls"
+  },
+  {
+    "id": "cmnbry1ir000rdb7ci7342s6g",
+    "clientName": "Alexandre P.",
+    "quote": "Mon penthouse face à la Tête d'Or est devenu un véritable havre de paix grâce au talent de Camille. Chaque matériau, chaque lumière a été pensé avec une précision remarquable. Un travail d'orfèvre.",
+    "rating": 5,
+    "projectId": "cmnbry1fm0005db7cv6wtimji"
+  }
+]

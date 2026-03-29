@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
+import { getFeaturedProjects } from "@/lib/data";
 import { siteConfig } from "@/config/site";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ProjectCard } from "@/components/ui/ProjectCard";
@@ -15,12 +15,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function DecoRhoneAlpesPage() {
-  const projects = await prisma.project.findMany({
-    where: { isFeatured: true },
-    orderBy: { order: "asc" },
-    take: 3,
-  });
+export default function DecoRhoneAlpesPage() {
+  const featuredProjects = getFeaturedProjects(3);
 
   const breadcrumbLd = {
     "@context": "https://schema.org",
@@ -101,7 +97,7 @@ export default async function DecoRhoneAlpesPage() {
                 Projets en Rhône-Alpes
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {projects.map((project) => (
+                {featuredProjects.map((project) => (
                   <ProjectCard
                     key={project.id}
                     title={project.title}

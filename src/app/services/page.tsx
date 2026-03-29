@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
+import { services } from "@/lib/data";
 import { siteConfig } from "@/config/site";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { CTABanner } from "@/components/sections/CTABanner";
@@ -16,12 +16,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function ServicesPage() {
-  const services = await prisma.service.findMany({
-    orderBy: { order: "asc" },
-    include: { faqs: { orderBy: { order: "asc" } } },
-  });
-
+export default function ServicesPage() {
   return (
     <>
     <BreadcrumbJsonLd items={[{ name: "Accueil", href: "/" }, { name: "Services", href: "/services" }]} />

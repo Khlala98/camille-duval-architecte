@@ -1,0 +1,120 @@
+[
+  {
+    "id": "cmnbry1g40006db7cmx83t23z",
+    "title": "Conseil & Décoration",
+    "description": "Une consultation personnalisée pour repenser votre intérieur. Je vous guide dans le choix des couleurs, matériaux, mobilier et accessoires pour créer un espace qui vous ressemble.",
+    "includes": "[\"Visite à domicile (2h)\",\"Planche d'ambiance personnalisée\",\"Liste de shopping commentée\",\"Plan d'implantation du mobilier\",\"Conseils couleurs et matériaux\"]",
+    "targetAudience": "Particuliers souhaitant un regard expert pour rafraîchir leur intérieur sans gros travaux.",
+    "startingPrice": "500 €",
+    "icon": "Palette",
+    "order": 1,
+    "faqs": [
+      {
+        "id": "cmnbry1hw000adb7c6iwgw30p",
+        "question": "Combien de temps dure une consultation ?",
+        "answer": "La visite à domicile dure environ 2 heures. Vous recevez ensuite votre dossier complet sous 10 jours ouvrés.",
+        "order": 1,
+        "serviceId": "cmnbry1g40006db7cmx83t23z"
+      },
+      {
+        "id": "cmnbry1hw000bdb7clfzkf6hp",
+        "question": "Puis-je réaliser les achats moi-même ?",
+        "answer": "Absolument ! La liste de shopping est conçue pour être autonome, avec des liens directs et des alternatives à différents budgets.",
+        "order": 2,
+        "serviceId": "cmnbry1g40006db7cmx83t23z"
+      }
+    ]
+  },
+  {
+    "id": "cmnbry1gj0007db7ciozhao3f",
+    "title": "Architecture Intérieure Complète",
+    "description": "De la conception à la réalisation, je prends en charge l'intégralité de votre projet de rénovation ou d'aménagement. Plans, 3D, sélection des artisans et suivi jusqu'à la livraison.",
+    "includes": "[\"Relevé de mesures et état des lieux\",\"Plans 2D et visualisations 3D\",\"Dossier technique complet\",\"Sélection et coordination des artisans\",\"Suivi de chantier hebdomadaire\",\"Décoration et mise en scène finale\"]",
+    "targetAudience": "Particuliers et professionnels engagés dans une rénovation ou un aménagement complet.",
+    "startingPrice": "5 000 €",
+    "icon": "PenTool",
+    "order": 2,
+    "faqs": [
+      {
+        "id": "cmnbry1hw000cdb7c4n2habav",
+        "question": "Quelle est la durée moyenne d'un projet complet ?",
+        "answer": "Comptez entre 3 et 10 mois selon l'ampleur des travaux. Je vous communique un planning détaillé dès la phase de conception.",
+        "order": 1,
+        "serviceId": "cmnbry1gj0007db7ciozhao3f"
+      },
+      {
+        "id": "cmnbry1hw000ddb7ca2kgy5bc",
+        "question": "Travaillez-vous avec vos propres artisans ?",
+        "answer": "Je dispose d'un réseau de confiance d'artisans qualifiés, mais je peux aussi collaborer avec des prestataires de votre choix.",
+        "order": 2,
+        "serviceId": "cmnbry1gj0007db7ciozhao3f"
+      },
+      {
+        "id": "cmnbry1hw000edb7cwiodgl1z",
+        "question": "Le mobilier est-il inclus dans le budget annoncé ?",
+        "answer": "Le prix de départ couvre mes honoraires de conception et de suivi. Le budget mobilier et travaux est défini ensemble selon vos moyens.",
+        "order": 3,
+        "serviceId": "cmnbry1gj0007db7ciozhao3f"
+      }
+    ]
+  },
+  {
+    "id": "cmnbry1gz0008db7cuu4uy6ko",
+    "title": "Suivi de Chantier",
+    "description": "Vous avez déjà vos plans mais besoin d'un chef d'orchestre ? Je coordonne vos artisans, vérifie la qualité d'exécution et m'assure du respect des délais et du budget.",
+    "includes": "[\"Réunions de chantier hebdomadaires\",\"Coordination des corps de métier\",\"Contrôle qualité à chaque étape\",\"Reporting photo et compte-rendu\",\"Gestion des imprévus\"]",
+    "targetAudience": "Propriétaires ayant des plans validés mais souhaitant déléguer le suivi opérationnel.",
+    "startingPrice": "2 000 €",
+    "icon": "HardHat",
+    "order": 3,
+    "faqs": [
+      {
+        "id": "cmnbry1hw000fdb7cvn4ndn1a",
+        "question": "À quelle fréquence visitez-vous le chantier ?",
+        "answer": "Je me rends sur le chantier au minimum une fois par semaine, davantage lors des phases critiques (gros oeuvre, second oeuvre).",
+        "order": 1,
+        "serviceId": "cmnbry1gz0008db7cuu4uy6ko"
+      },
+      {
+        "id": "cmnbry1hw000gdb7c5kdix6wl",
+        "question": "Que se passe-t-il en cas de retard ou de malfaçon ?",
+        "answer": "Je gère directement avec les artisans. Mon rôle est de protéger vos intérêts : chaque étape est validée avant de passer à la suivante.",
+        "order": 2,
+        "serviceId": "cmnbry1gz0008db7cuu4uy6ko"
+      }
+    ]
+  },
+  {
+    "id": "cmnbry1hf0009db7c79i00h3g",
+    "title": "Home Staging",
+    "description": "Valorisez votre bien pour une vente rapide et au meilleur prix. Je réorganise, désencombre et met en scène votre intérieur pour séduire les acheteurs dès la première visite.",
+    "includes": "[\"Diagnostic et recommandations\",\"Réaménagement du mobilier existant\",\"Ajout d'accessoires et textiles\",\"Séance photo professionnelle\"]",
+    "targetAudience": "Propriétaires et agents immobiliers souhaitant accélérer la vente d'un bien.",
+    "startingPrice": "1 500 €",
+    "icon": "Home",
+    "order": 4,
+    "faqs": [
+      {
+        "id": "cmnbry1hw000hdb7cgwtg3dh6",
+        "question": "Faut-il vider le logement pour le home staging ?",
+        "answer": "Non, je travaille principalement avec votre mobilier existant. J'apporte quelques accessoires et textiles pour finaliser la mise en scène.",
+        "order": 1,
+        "serviceId": "cmnbry1hf0009db7c79i00h3g"
+      },
+      {
+        "id": "cmnbry1hw000idb7clolmb83i",
+        "question": "Quel est le retour sur investissement ?",
+        "answer": "En moyenne, un home staging bien réalisé permet de vendre 2 à 3 fois plus vite et peut augmenter le prix de vente de 5 à 15%.",
+        "order": 2,
+        "serviceId": "cmnbry1hf0009db7c79i00h3g"
+      },
+      {
+        "id": "cmnbry1hw000jdb7cbgivnb1t",
+        "question": "Proposez-vous la location de mobilier ?",
+        "answer": "Oui, je peux organiser la location de meubles et d'objets déco pour les biens vides, incluse dans un forfait sur mesure.",
+        "order": 3,
+        "serviceId": "cmnbry1hf0009db7c79i00h3g"
+      }
+    ]
+  }
+]

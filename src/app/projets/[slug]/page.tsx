@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { projects, getProjectBySlug } from "@/lib/data";
 import { siteConfig } from "@/config/site";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
@@ -12,15 +12,12 @@ interface Props {
   params: { slug: string };
 }
 
-export async function generateStaticParams() {
-  const projects = await prisma.project.findMany({ select: { slug: true } });
+export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = await prisma.project.findUnique({
-    where: { slug: params.slug },
-  });
+export function generateMetadata({ params }: Props): Metadata {
+  const project = getProjectBySlug(params.slug);
   if (!project) return {};
   return {
     title: `${project.title} | ${siteConfig.name}`,
@@ -55,25 +52,18 @@ function InfoItem({
   );
 }
 
-export default async function ProjectPage({ params }: Props) {
-  const project = await prisma.project.findUnique({
-    where: { slug: params.slug },
-  });
+export default function ProjectPage({ params }: Props) {
+  const project = getProjectBySlug(params.slug);
 
   if (!project) notFound();
 
   const galleryImages: string[] = JSON.parse(project.galleryImages);
 
-  // Get prev/next projects
-  const allProjects = await prisma.project.findMany({
-    orderBy: { order: "asc" },
-    select: { slug: true, title: true },
-  });
-  const currentIndex = allProjects.findIndex((p) => p.slug === params.slug);
-  const prev = currentIndex > 0 ? allProjects[currentIndex - 1] : null;
+  const currentIndex = projects.findIndex((p) => p.slug === params.slug);
+  const prev = currentIndex > 0 ? projects[currentIndex - 1] : null;
   const next =
-    currentIndex < allProjects.length - 1
-      ? allProjects[currentIndex + 1]
+    currentIndex < projects.length - 1
+      ? projects[currentIndex + 1]
       : null;
 
   return (
@@ -118,14 +108,7 @@ export default async function ProjectPage({ params }: Props) {
             {project.surfaceArea && (
               <InfoItem
                 icon={
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <rect x="3" y="3" width="18" height="18" rx="2" />
                     <path d="M3 12h18M12 3v18" />
                   </svg>
@@ -137,14 +120,7 @@ export default async function ProjectPage({ params }: Props) {
             {project.budgetRange && (
               <InfoItem
                 icon={
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <circle cx="12" cy="12" r="10" />
                     <path d="M14.5 9a3.5 3.5 0 00-5 0M9.5 15a3.5 3.5 0 005 0M12 6v2M12 16v2" />
                   </svg>
@@ -156,14 +132,7 @@ export default async function ProjectPage({ params }: Props) {
             {project.duration && (
               <InfoItem
                 icon={
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <circle cx="12" cy="12" r="10" />
                     <path d="M12 6v6l4 2" />
                   </svg>
@@ -250,15 +219,7 @@ export default async function ProjectPage({ params }: Props) {
               href={`/projets/${prev.slug}`}
               className="group flex items-center gap-2 text-sm text-warmgray hover:text-dark transition-colors"
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                className="group-hover:-translate-x-1 transition-transform"
-              >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="group-hover:-translate-x-1 transition-transform">
                 <path d="M19 12H5M12 19l-7-7 7-7" />
               </svg>
               <span className="hidden sm:inline">{prev.title}</span>
@@ -274,15 +235,7 @@ export default async function ProjectPage({ params }: Props) {
             >
               <span className="hidden sm:inline">{next.title}</span>
               <span className="sm:hidden">Suivant</span>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                className="group-hover:translate-x-1 transition-transform"
-              >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="group-hover:translate-x-1 transition-transform">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </Link>

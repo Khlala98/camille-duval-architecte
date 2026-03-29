@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { prisma } from "@/lib/prisma";
 
 const contactSchema = z.object({
   projectType: z.string().min(1),
@@ -19,22 +18,16 @@ export async function POST(request: Request) {
     const body = await request.json();
     const data = contactSchema.parse(body);
 
-    const contactRequest = await prisma.contactRequest.create({
-      data: {
-        fullName: data.fullName,
-        email: data.email,
-        phone: data.phone,
-        projectType: data.projectType,
-        surfaceArea: data.surfaceArea,
-        budgetRange: data.budgetRange,
-        city: data.city,
-        message: data.message,
-        desiredTimeline: data.desiredTimeline,
-      },
+    // TODO: Connect Resend for email notifications
+    console.log("📬 New contact request:", {
+      name: data.fullName,
+      email: data.email,
+      projectType: data.projectType,
+      budget: data.budgetRange,
     });
 
     return NextResponse.json(
-      { success: true, id: contactRequest.id },
+      { success: true },
       { status: 201 }
     );
   } catch (error) {

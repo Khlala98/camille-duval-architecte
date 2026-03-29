@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
+import { projects } from "@/lib/data";
 import { siteConfig } from "@/config/site";
 import { ProjectsGrid } from "./ProjectsGrid";
 import { BreadcrumbJsonLd } from "@/components/layout/JsonLd";
@@ -14,11 +14,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function ProjetsPage() {
-  const projects = await prisma.project.findMany({
-    orderBy: { order: "asc" },
-  });
-
+export default function ProjetsPage() {
   return (
     <>
     <BreadcrumbJsonLd items={[{ name: "Accueil", href: "/" }, { name: "Projets", href: "/projets" }]} />

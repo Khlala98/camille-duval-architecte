@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
+import { processSteps } from "@/lib/data";
 import { siteConfig } from "@/config/site";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { CTABanner } from "@/components/sections/CTABanner";
@@ -15,10 +15,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function ProcessusPage() {
-  const steps = await prisma.processStep.findMany({
-    orderBy: { order: "asc" },
-  });
+export default function ProcessusPage() {
+  const steps = processSteps;
 
   return (
     <>
@@ -48,9 +46,7 @@ export default async function ProcessusPage() {
               <ScrollReveal key={step.id} delay={i * 0.1}>
                 <div
                   className={`relative flex items-start gap-8 mb-16 last:mb-0 ${
-                    isLeft
-                      ? "lg:flex-row"
-                      : "lg:flex-row-reverse"
+                    isLeft ? "lg:flex-row" : "lg:flex-row-reverse"
                   }`}
                 >
                   {/* Circle number */}

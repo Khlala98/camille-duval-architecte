@@ -1,12 +1,9 @@
-import { prisma } from "@/lib/prisma";
+import { testimonials } from "@/lib/data";
 import { TestimonialCard } from "@/components/ui/TestimonialCard";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 
-export async function TestimonialsSection() {
-  const testimonials = await prisma.testimonial.findMany({
-    orderBy: { rating: "desc" },
-    take: 3,
-  });
+export function TestimonialsSection() {
+  const items = testimonials.slice(0, 3);
 
   return (
     <section className="py-24 lg:py-32">
@@ -17,7 +14,7 @@ export async function TestimonialsSection() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {testimonials.map((t) => (
+          {items.map((t) => (
             <TestimonialCard
               key={t.id}
               clientName={t.clientName}

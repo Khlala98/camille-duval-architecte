@@ -1,14 +1,10 @@
-import { prisma } from "@/lib/prisma";
+import { getFeaturedProjects } from "@/lib/data";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Button } from "@/components/ui/Button";
 
-export async function FeaturedProjects() {
-  const projects = await prisma.project.findMany({
-    where: { isFeatured: true },
-    orderBy: { order: "asc" },
-    take: 4,
-  });
+export function FeaturedProjects() {
+  const projects = getFeaturedProjects(4);
 
   return (
     <section className="py-24 lg:py-32">

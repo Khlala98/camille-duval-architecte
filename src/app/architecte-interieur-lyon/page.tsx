@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
+import { getProjectsByCity } from "@/lib/data";
 import { siteConfig } from "@/config/site";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ProjectCard } from "@/components/ui/ProjectCard";
@@ -15,12 +15,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function ArchitecteLyonPage() {
-  const projects = await prisma.project.findMany({
-    where: { city: "Lyon" },
-    orderBy: { order: "asc" },
-    take: 3,
-  });
+export default function ArchitecteLyonPage() {
+  const lyonProjects = getProjectsByCity("Lyon", 3);
 
   const breadcrumbLd = {
     "@context": "https://schema.org",
@@ -98,7 +94,7 @@ export default async function ArchitecteLyonPage() {
                 Projets réalisés à Lyon
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {projects.map((project) => (
+                {lyonProjects.map((project) => (
                   <ProjectCard
                     key={project.id}
                     title={project.title}

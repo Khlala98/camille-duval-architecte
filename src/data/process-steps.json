@@ -1,0 +1,42 @@
+[
+  {
+    "id": "cmnbry1ic000kdb7cb9z3xsau",
+    "title": "Premier contact & visite",
+    "description": "Nous échangeons sur votre projet par téléphone, puis je me déplace chez vous pour découvrir les lieux, comprendre vos besoins et prendre les premières mesures.",
+    "icon": "MessageCircle",
+    "durationText": "1 à 2 semaines",
+    "order": 1
+  },
+  {
+    "id": "cmnbry1ic000ldb7c6nc1v9cu",
+    "title": "Étude & proposition",
+    "description": "Je vous présente une proposition détaillée incluant le concept créatif, une estimation budgétaire et un planning prévisionnel.",
+    "icon": "FileText",
+    "durationText": "2 à 3 semaines",
+    "order": 2
+  },
+  {
+    "id": "cmnbry1ic000mdb7c1p4ewrj7",
+    "title": "Conception détaillée",
+    "description": "Plans techniques, visualisations 3D, sélection des matériaux et du mobilier. Chaque détail est pensé et validé avec vous.",
+    "icon": "Layers",
+    "durationText": "3 à 6 semaines",
+    "order": 3
+  },
+  {
+    "id": "cmnbry1ic000ndb7c9hra6qh5",
+    "title": "Suivi de chantier",
+    "description": "Je coordonne les artisans, contrôle la qualité d'exécution et vous tiens informé à chaque étape grâce à des comptes-rendus réguliers.",
+    "icon": "HardHat",
+    "durationText": "Variable selon projet",
+    "order": 4
+  },
+  {
+    "id": "cmnbry1ic000odb7c3eofai85",
+    "title": "Livraison & révélation",
+    "description": "Le grand jour ! Installation du mobilier, mise en scène finale et remise des clés de votre nouvel intérieur. Un moment que je prends plaisir à partager avec vous.",
+    "icon": "Sparkles",
+    "durationText": "1 semaine",
+    "order": 5
+  }
+]
