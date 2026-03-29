@@ -32,6 +32,7 @@ export function Navbar() {
   return (
     <>
       <nav
+        aria-label="Navigation principale"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           showDark
             ? "bg-cream/95 backdrop-blur-md shadow-sm"
@@ -43,6 +44,7 @@ export function Navbar() {
             {/* Logo */}
             <Link
               href="/"
+              aria-label={`${siteConfig.name} — Accueil`}
               className={`font-serif text-xl font-bold tracking-tight transition-colors duration-300 ${
                 showDark ? "text-dark" : "text-white"
               }`}

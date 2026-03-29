@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/SafeImage";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -61,7 +61,7 @@ export default function BlogPostPage({ params }: Props) {
       <main className="pt-20">
         {/* Cover image */}
         <div className="relative w-full max-h-[50vh] overflow-hidden">
-          <Image
+          <SafeImage
             src={post.coverImage}
             alt={post.title}
             width={1920}

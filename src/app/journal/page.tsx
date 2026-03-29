@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/SafeImage";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { getAllPosts } from "@/lib/blog";
@@ -39,7 +39,7 @@ export default function JournalPage() {
                 className="group block bg-white border border-border rounded-lg overflow-hidden hover:shadow-md transition-shadow"
               >
                 <div className="relative aspect-[16/9] overflow-hidden">
-                  <Image
+                  <SafeImage
                     src={post.coverImage}
                     alt={post.title}
                     fill

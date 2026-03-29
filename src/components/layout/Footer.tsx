@@ -37,13 +37,13 @@ const footerNav = [
 
 export function Footer() {
   return (
-    <footer className="bg-dark text-cream">
+    <footer className="bg-dark text-cream" role="contentinfo" aria-label="Pied de page">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16 lg:py-24">
         {/* Top grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Logo + tagline */}
           <div className="lg:col-span-1">
-            <Link href="/" className="font-serif text-2xl font-bold text-cream">
+            <Link href="/" aria-label={`${siteConfig.name} — Accueil`} className="font-serif text-2xl font-bold text-cream">
               {siteConfig.name}
             </Link>
             <p className="mt-4 text-cream/60 text-sm leading-relaxed max-w-xs">

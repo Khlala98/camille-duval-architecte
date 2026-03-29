@@ -60,6 +60,8 @@ function FAQItem({ faq }: { faq: FAQ }) {
     <div className="border-b border-border last:border-0">
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-controls={`faq-answer-${faq.id}`}
         className="flex items-center justify-between w-full py-4 text-left"
       >
         <span className="text-sm font-medium text-dark pr-4">
@@ -82,6 +84,8 @@ function FAQItem({ faq }: { faq: FAQ }) {
       <AnimatePresence>
         {open && (
           <motion.div
+            id={`faq-answer-${faq.id}`}
+            role="region"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}

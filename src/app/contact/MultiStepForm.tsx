@@ -58,6 +58,7 @@ export function MultiStepForm() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const {
     register,
@@ -94,6 +95,7 @@ export function MultiStepForm() {
 
   const onSubmit = async (data: FormData) => {
     setSubmitting(true);
+    setServerError(null);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -102,7 +104,14 @@ export function MultiStepForm() {
       });
       if (res.ok) {
         setSubmitted(true);
+      } else {
+        const body = await res.json().catch(() => null);
+        setServerError(
+          body?.error ?? "Une erreur est survenue. Veuillez réessayer."
+        );
       }
+    } catch {
+      setServerError("Impossible de contacter le serveur. Vérifiez votre connexion.");
     } finally {
       setSubmitting(false);
     }
@@ -355,6 +364,19 @@ export function MultiStepForm() {
           )}
         </AnimatePresence>
 
+        {/* Server error */}
+        {serverError && (
+          <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600 flex items-center justify-between">
+            <span>{serverError}</span>
+            <button
+              type="submit"
+              className="text-red-700 font-medium underline hover:no-underline ml-4 shrink-0"
+            >
+              Réessayer
+            </button>
+          </div>
+        )}
+
         {/* Navigation buttons */}
         <div className="flex items-center justify-between mt-8 pt-6 border-t border-border">
           {step > 1 ? (
@@ -401,8 +423,15 @@ export function MultiStepForm() {
             <button
               type="submit"
               disabled={submitting}
-              className="bg-gold text-dark rounded-full px-8 py-2.5 text-sm font-medium hover:bg-gold-dark transition-colors disabled:opacity-50"
+              className="bg-gold text-dark rounded-full px-8 py-2.5 text-sm font-medium hover:bg-gold-dark transition-colors disabled:opacity-50 inline-flex items-center gap-2"
+              aria-label="Envoyer le formulaire de contact"
             >
+              {submitting && (
+                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" className="opacity-25" />
+                  <path d="M4 12a8 8 0 018-8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="opacity-75" />
+                </svg>
+              )}
               {submitting ? "Envoi en cours..." : "Envoyer"}
             </button>
           )}

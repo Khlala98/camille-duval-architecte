@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/SafeImage";
 
 interface ProjectCardProps {
   title: string;
@@ -12,7 +12,7 @@ export function ProjectCard({ title, slug, category, mainImage }: ProjectCardPro
   return (
     <Link href={`/projets/${slug}`} className="group block relative overflow-hidden rounded-lg">
       <div className="aspect-[4/3] relative">
-        <Image
+        <SafeImage
           src={mainImage}
           alt={title}
           fill

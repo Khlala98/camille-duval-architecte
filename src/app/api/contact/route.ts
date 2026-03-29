@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { rateLimit } from "@/lib/rate-limit";
 
 const contactSchema = z.object({
   projectType: z.string().min(1),
@@ -15,6 +16,18 @@ const contactSchema = z.object({
 
 export async function POST(request: Request) {
   try {
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+      "unknown";
+
+    const { success } = rateLimit(ip);
+    if (!success) {
+      return NextResponse.json(
+        { success: false, error: "Trop de requêtes. Veuillez patienter une minute." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const data = contactSchema.parse(body);
 

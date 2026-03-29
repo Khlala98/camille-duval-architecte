@@ -32,6 +32,8 @@ export function MobileMenu({ isOpen, onClose, links }: MobileMenuProps) {
           exit={{ x: "100%" }}
           transition={{ type: "tween", duration: 0.35, ease: "easeInOut" }}
           className="fixed inset-0 z-[60] bg-cream flex flex-col"
+          role="dialog"
+          aria-label="Menu de navigation"
         >
           {/* Header */}
           <div className="flex items-center justify-between px-6 h-20">

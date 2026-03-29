@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/SafeImage";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects, getProjectBySlug } from "@/lib/data";
@@ -72,7 +72,7 @@ export default function ProjectPage({ params }: Props) {
     <main className="pt-20">
       {/* Hero image */}
       <div className="relative w-full max-h-[70vh] overflow-hidden">
-        <Image
+        <SafeImage
           src={project.mainImage}
           alt={project.title}
           width={1920}
@@ -182,7 +182,7 @@ export default function ProjectPage({ params }: Props) {
                       i === 0 ? "md:col-span-2 aspect-[16/9]" : "aspect-[4/3]"
                     }`}
                   >
-                    <Image
+                    <SafeImage
                       src={img}
                       alt={`${project.title} — vue ${i + 1}`}
                       fill

@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Camille Duval — Architecte d'intérieur
 
-## Getting Started
+Site vitrine pour Camille Duval, architecte d'intérieur à Lyon. Design sur mesure, projets résidentiels et commerciaux, blog journal, formulaire de contact multi-étapes.
 
-First, run the development server:
+## Installation
 
 ```bash
+git clone <repo-url>
+cd camille-duval-architecte
+npm install
+cp .env.example .env
+npx prisma db push
+npx prisma db seed
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Le site est disponible sur [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Configuration client
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Toute la configuration (nom, contact, réseaux sociaux, zones d'intervention, SEO) se trouve dans `src/config/site.ts`.
 
-## Learn More
+## Variables d'environnement
 
-To learn more about Next.js, take a look at the following resources:
+| Variable | Description | Obligatoire |
+|---|---|---|
+| `DATABASE_URL` | URL de connexion Prisma (SQLite par défaut) | Oui |
+| `RESEND_API_KEY` | Clé API Resend pour l'envoi d'emails | Non |
+| `STRIPE_SECRET_KEY` | Clé secrète Stripe | Non |
+| `STRIPE_WEBHOOK_SECRET` | Secret webhook Stripe | Non |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Clé publique Stripe | Non |
+| `NEXT_PUBLIC_SITE_URL` | URL publique du site | Oui |
+| `API_ADMIN_SECRET` | Secret pour protéger les routes API admin | Oui |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Commandes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Commande | Description |
+|---|---|
+| `npm run dev` | Lancer le serveur de développement |
+| `npm run build` | Build de production |
+| `npm start` | Lancer le serveur de production |
+| `npm run lint` | Linter le code |
+| `npx prisma studio` | Interface Prisma pour la base de données |
 
-## Deploy on Vercel
+## Stack technique
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Framework** : Next.js 14 (App Router)
+- **Langage** : TypeScript
+- **Styles** : Tailwind CSS 3.4
+- **Animations** : Framer Motion
+- **Formulaires** : React Hook Form + Zod
+- **Base de données** : Prisma + SQLite
+- **Blog** : MDX (next-mdx-remote)
+- **Emails** : Resend (à configurer)
+- **Paiements** : Stripe (à configurer)
+- **SEO** : next-sitemap, JSON-LD
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Déploiement Vercel
+
+1. Connecter le repo GitHub à [vercel.com](https://vercel.com)
+2. Configurer les variables d'environnement dans les settings du projet
+3. Le build command par défaut (`npm run build`) fonctionne directement
+4. Le framework preset "Next.js" est automatiquement détecté
