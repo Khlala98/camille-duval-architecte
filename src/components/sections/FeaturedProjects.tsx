@@ -17,59 +17,31 @@ export function FeaturedProjects() {
           </p>
         </div>
 
-        {/* Magazine layout: 2/3 + 1/3 stacked, then cinematic full width */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {/* First project — 2/3 width */}
-          {projects[0] && (
-            <div className="lg:col-span-2 lg:row-span-2">
-              <ProjectCard
-                title={projects[0].title}
-                slug={projects[0].slug}
-                category={projects[0].category}
-                mainImage={projects[0].mainImage}
-                featured
-                aspectClass="aspect-[4/3] lg:aspect-auto lg:h-full"
-              />
-            </div>
-          )}
-          {/* Second project — top right 1/3 */}
-          {projects[1] && (
-            <div className="lg:col-span-1">
-              <ProjectCard
-                title={projects[1].title}
-                slug={projects[1].slug}
-                category={projects[1].category}
-                mainImage={projects[1].mainImage}
-                aspectClass="aspect-[4/3]"
-              />
-            </div>
-          )}
-          {/* Third project — bottom right 1/3 */}
-          {projects[2] && (
-            <div className="lg:col-span-1">
-              <ProjectCard
-                title={projects[2].title}
-                slug={projects[2].slug}
-                category={projects[2].category}
-                mainImage={projects[2].mainImage}
-                aspectClass="aspect-[4/3]"
-              />
-            </div>
-          )}
-        </div>
-
-        {/* Fourth project — cinematic full width */}
-        {projects[3] && (
-          <div className="mt-4">
-            <ProjectCard
-              title={projects[3].title}
-              slug={projects[3].slug}
-              category={projects[3].category}
-              mainImage={projects[3].mainImage}
-              aspectClass="aspect-[21/9]"
-            />
-          </div>
+        {/* First project — full width hero */}
+        {projects[0] && (
+          <ProjectCard
+            title={projects[0].title}
+            slug={projects[0].slug}
+            category={projects[0].category}
+            mainImage={projects[0].mainImage}
+            featured
+            aspectClass="aspect-[16/9]"
+          />
         )}
+
+        {/* Next 3 projects — 3-column grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+          {projects.slice(1, 4).map((project) => (
+            <ProjectCard
+              key={project.slug}
+              title={project.title}
+              slug={project.slug}
+              category={project.category}
+              mainImage={project.mainImage}
+              aspectClass="aspect-[4/3]"
+            />
+          ))}
+        </div>
 
         <div className="text-center mt-16">
           <Button href="/projets" variant="outline">
